@@ -1,4 +1,4 @@
-package Lab7.exercise7;
+package Lab7.exercise6;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -7,10 +7,10 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.StringJoiner;
 
-public class CompositeShow implements Show {
+public class CompositeShow2 implements Show, Iterable<Show> {
     private final List<Show> shows = new ArrayList<>();
 
-    public CompositeShow(Show... shows) {
+    public CompositeShow2(Show... shows) {
         if (shows.length < 2 || shows.length > 5) {
             throw new IllegalArgumentException("Arguments should be between two and five shows inclusively");
         }
@@ -46,6 +46,6 @@ public class CompositeShow implements Show {
         for (Show show : shows) {
             copies.add(show.copy());
         }
-        return new CompositeShow(copies.toArray(new Show[0]));
+        return new CompositeShow2(copies.toArray(new Show[0]));
     }
 }

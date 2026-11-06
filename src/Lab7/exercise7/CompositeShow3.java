@@ -1,4 +1,4 @@
-package Lab7.exercise6;
+package Lab7.exercise7;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -7,10 +7,10 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.StringJoiner;
 
-public class CompositeShow implements Show, Iterable<Show> {
-    private final List<Show> shows = new ArrayList<>();
+public class CompositeShow3 implements Show2 {
+    private final List<Show2> shows = new ArrayList<>();
 
-    public CompositeShow(Show... shows) {
+    public CompositeShow3(Show2... shows) {
         if (shows.length < 2 || shows.length > 5) {
             throw new IllegalArgumentException("Arguments should be between two and five shows inclusively");
         }
@@ -18,14 +18,14 @@ public class CompositeShow implements Show, Iterable<Show> {
     }
 
     @Override
-    public Iterator<Show> iterator() {
+    public Iterator<Show2> iterator() {
         return Collections.unmodifiableList(shows).iterator();
     }
 
     @Override
     public String description() {
         StringJoiner joiner = new StringJoiner("; ", "[", "]");
-        for (Show show : shows) {
+        for (Show2 show : shows) {
             joiner.add(show.description());
         }
         return joiner.toString();
@@ -34,18 +34,18 @@ public class CompositeShow implements Show, Iterable<Show> {
     @Override
     public int runningTime() {
         int total = 0;
-        for (Show show : shows) {
+        for (Show2 show : shows) {
             total += show.runningTime();
         }
         return total;
     }
 
     @Override
-    public Show copy() {
-        List<Show> copies = new ArrayList<>();
-        for (Show show : shows) {
+    public Show2 copy() {
+        List<Show2> copies = new ArrayList<>();
+        for (Show2 show : shows) {
             copies.add(show.copy());
         }
-        return new CompositeShow(copies.toArray(new Show[0]));
+        return new CompositeShow3(copies.toArray(new Show2[0]));
     }
 }
